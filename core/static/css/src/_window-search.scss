@@ -1,0 +1,128 @@
+@use "bootstrap" as B;
+@use "const";
+@use "material-colors" as C;
+
+.main_page {
+
+    #site-navbar {
+        background-color: rgba(0, 0, 0, .05);
+    }
+
+    body {
+        background-image: url("#{const.$ROOT_IMG_PATH}/main-banner.jpg") ;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+}
+
+
+// * MAIN PAGE SEARCH
+//
+
+.basic-window-search {
+    $submit-padding-x: .75rem;
+
+    margin: 1rem auto;
+    max-width: 40rem;
+    padding: 1rem 0;
+
+    .search-heading {
+        background: linear-gradient(to right, rgba(0,0,0,0), rgba(38,50,56,.1), rgba(0,0,0,0), rgba(0,0,0,0));
+        border-style: solid;
+        border-width: 4px;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(to right, rgba(0,0,0,0), rgba(38,50,56,.3), rgba(0,0,0,0));
+        border-left:  none;
+        border-right: none;
+
+        color: B.$gray-800;
+        font-size: 2rem;
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 1rem;
+        padding: .75rem .25rem .9rem;
+        width: 100%;
+
+        @include B.media-breakpoint-up(sm) {
+            padding-left:  1rem;
+            padding-right: 1rem;
+        }
+
+        @include B.media-breakpoint-up(md) {
+            font-size: 2.2rem;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: center;
+        margin: auto;
+        padding: .15rem $submit-padding-x 1rem;
+    }
+
+    .dimensions {
+        display: flex;
+        padding-left:  $submit-padding-x;
+        padding-right: $submit-padding-x;
+    }
+
+    .dimension {
+        margin-bottom: 0;
+        width: 6.25rem;
+
+        input {
+            text-align: center;
+            border: 3px solid #999;
+        }
+
+        label {
+            color: black;
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-bottom: .25rem;
+            margin-left: .25rem;
+        }
+
+        .length-units {
+            color: B.$gray-600;
+        }
+    }
+
+    .x-sign {
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.35rem;
+        width: 2rem;
+        color: B.$gray-800;
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
+    [type="submit"] {
+        @extend .btn;
+        @extend .btn-primary;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 1.5rem;
+        margin-left:  $submit-padding-x;
+        margin-right: $submit-padding-x;
+        padding: .4rem .75rem .4rem .5rem;
+
+        font-size: .9rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        .material-icons {
+            padding-right: .25rem;
+        }
+    }
+}

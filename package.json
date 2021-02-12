@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "scripts": {
+    "run": "make run",
+    "run-dt": "make run-dt",
+    "run-msk": "make run-msk",
+    "run-msk-dt": "make run-msk-dt",
+    "run-nk": "make run-nk",
+    "run-nk-dt": "make run-nk-dt",
+    "run-sm": "make run-sm",
+    "run-sm-dt": "make run-sm-dt",
+    "static": "make static",
+    "check-deploy": "make check-deploy",
+    "check-migrations": "make check-migrations",
+    "css": "make css",
+    "css-watch": "make css-watch",
+    "css-compile": "make css-compile",
+    "css-prefix": "make css-prefix",
+    "css-minify": "make css-minify",
+    "js": "make js",
+    "js-compile": "make js-compile",
+    "js-watch": "make js-watch"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "autoprefixer": "^9.8.5",
+    "cssnano": "^4.1.10",
+    "postcss-cli": "^7.1.1",
+    "rollup": "^2.22.1",
+    "@rollup/plugin-babel": "^5.1.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "rollup-plugin-terser": "^6.1.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "imask": "^6.0.5"
+  }
+}

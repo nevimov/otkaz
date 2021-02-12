@@ -1,0 +1,16 @@
+$bp-sm: 767px;
+$bp-lg: 1024px;
+
+#header .seller-global-nav {
+
+    @media (max-width: $bp-lg) {
+        margin: 1rem 0 .45rem;
+    }
+
+    .nav-link {
+        padding: 0 .5rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+}

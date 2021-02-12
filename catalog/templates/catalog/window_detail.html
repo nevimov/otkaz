@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load humanize static %}
+
+{% block html_classes %} catalog--window-detail {% endblock %}
+
+{% block content %}
+<main class="container">
+  <h1 class="page-heading">Отказное {{ window.get_type_display|lower }}</h1>
+  <div class="row">
+
+    {# ********************#}
+    {# *** WINDOW INFO *** #}
+    {# ********************#}
+
+    <section class="col-window">
+
+      <section class="window-img-section">
+        <div class="window-img">
+          <a href="#!" class="link-wrapper">
+            <img src="{% static 'catalog/img/window-types/realistic/' %}{{ window.type }}.svg" alt="">
+          </a>
+        </div>
+      </section>
+
+      <section class="window-desc-section">
+        <div class="price-tag">
+          <span class="price">{{ window.price|intcomma }}</span>
+        </div>
+
+        <ul class="feature-list">
+          <li class="feature">
+            <span class="feature-name">Ширина:</span>
+            <span class="feature-value">{{ window.width }} мм</span>
+          </li>
+          <li class="feature">
+            <span class="feature-name">Высота:</span>
+            <span class="feature-value">{{ window.height }} мм</span>
+          </li>
+          <li class="feature">
+            <span class="feature-name">Цвет:</span>
+            <span class="feature-value">{{ window.get_color_display }}</span>
+          </li>
+        </ul>
+
+        <div class="window-description">
+          {{ window.description|safe }}
+        </div>
+      </section>{# END .window-desc-section #}
+    </section>{# END .col-window #}
+
+    {# ********************#}
+    {# *** SELLER INFO *** #}
+    {# ********************#}
+
+    <section class="col-seller">
+      <div class="seller-biz-card">
+        <section class="main-section">
+          <h4 class="card-heading">Информация о продавце</h4>
+          {% with window.seller as seller %}
+          <h5 class="seller-name">{{ seller.public_name }}</h5>
+
+          <table class="seller-info-table">
+            <tbody>
+              {% if seller.legal_name %}
+              <tr>
+                <td>Юридическое имя</td>
+                <td>{{ seller.legal_name }}</td>
+              </tr>
+              {% endif %}
+              {% if seller.OGRN %}
+              <tr>
+                <td>ОГРН</td>
+                <td>{{ seller.OGRN }}</td>
+              </tr>
+              {% endif %}
+              {% if seller.INN %}
+              <tr>
+                <td>ИНН</td>
+                <td>{{ seller.INN }}</td>
+              </tr>
+              {% endif %}
+              {% if seller.website %}
+              <tr>
+                <td>Вебсайт</td>
+                <td> <a href="{{ seller.website }}">{{ seller.website }}</a> </td>
+              </tr>
+              {% endif %}
+              <tr>
+                <td>Телефоны</td>
+                <td>
+                {% for phone in seller.list_phones %}
+                  <a href="tel:{{ phone.e164 }}">{{ phone.national }}</a>
+                  <br>
+                {% endfor %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="places-section">
+          <h6 class="place-list-heading">Адреса</h6>
+          <ul class="place-list">
+            {% for place in seller.list_places %}
+            <li class="place">
+              <span class="place-type">{{ place.label }}</span>: <span class="place-address">{{ place.address }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endwith %}
+      </div>{# END .seller-biz-card #}
+    </section>{# END .col-seller #}
+
+  </div>{# END .row #}
+</main>
+{% endblock content %}

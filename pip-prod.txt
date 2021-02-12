@@ -1,0 +1,9 @@
+# Python packages that should be installed on a web-server running this site.
+#
+
+-r pip-common.txt
+
+gunicorn>=20,<21
+# XXX: Consider using an ASGI server. Check out:
+# https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
+# https://github.com/andrewgodwin/deps/blob/async/draft/0009-async.rst

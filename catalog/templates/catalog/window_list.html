@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load humanize static %}
+
+{% block html_classes %} catalog--window-list {% endblock %}
+
+
+{% block page_scripts %}
+<script>
+  var sellers = {}
+
+  {% for seller in sellers %}
+    sellers[{{ seller.pk }}] = {{ seller.as_json|safe }}
+  {% endfor %}
+
+  window.sellers = sellers
+</script>
+{% endblock page_scripts%}
+
+
+{% block modals %}
+{% comment %}
+  The modal below serves as a template for creating actual modals. Once the
+  user clicks a .seller-info-trigger button, the seller_info_modal.js script
+  shows a modal filled with the corresponding window seller's info.
+{% endcomment %}
+<div class="modal fade" id="seller-info-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body seller-biz-card"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<button id="window-filtermenu-trigger" class="sidemenu-trigger"
+        data-target="#window-filter-menu" type="button">
+  <i class="material-icons">filter_alt</i>
+</button>
+
+<main class="catalog-container">
+  <div class="row">
+
+    {# ******************************* #}
+    {# *** SECTION "WINDOW FILTER" *** #}
+    {# ******************************* #}
+
+    <section id="window-filter-menu" class="col-filter side-menu">
+      {% include 'partials/close_btn.html' %}
+      <div class="window-filter">
+        <h2 class="window-filter-heading">Фильтр окон</h2>
+        <form class="windows-filter-form" method="get">
+        {% with form=filter.form %}
+          {{ form.non_field_errors }}
+
+          <div class="width-filter form-group">
+            {{ form.width.errors }}
+            {{ form.width.label_tag }}
+            {{ form.width }}
+          </div>
+
+          <div class="height-filter form-group">
+            {{ form.height.errors }}
+            {{ form.height.label_tag }}
+            {{ form.height }}
+          </div>
+
+          <div class="type-filter form-group">
+            {{ form.type.errors }}
+            {{ form.type.label_tag }}
+            {{ form.type }}
+          </div>
+
+          <div class="color-filter form-group">
+            {{ form.color.errors }}
+            {{ form.color.label_tag }}
+            {{ form.color }}
+          </div>
+
+          <div class="seller-filter form-group">
+            {{ form.seller.errors }}
+            {{ form.seller.label_tag }}
+            {{ form.seller }}
+          </div>
+
+          <div class="actions">
+            <button class="apply-filters-btn" type="submit">Применить</button>
+            <a class="reset-filters-btn" href="{% url 'catalog:window-list' %}">Сбросить все</a>
+          </div>
+        {% endwith %}
+        </form>
+      </div>
+    </section>{# END .col-filter #}
+
+    {# ***************************** #}
+    {# *** SECTION "WINDOW LIST" *** #}
+    {# ***************************** #}
+
+    <section class="col-windows">
+      <h1 class="page-heading">Каталог отказных окон</h1>
+
+      {% if not window_list %}
+      <div class="no-matches-msg">
+        <div class="msg">
+          Окна, соответвующие указанным параметрам, не найдены.
+          <br>
+          Посмотрите <a href="{% url 'catalog:window-list' %}">полный каталог</a>.
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="window-catalog">
+        <div class="windows">
+        {% for window in window_list %}
+          {% with window.get_absolute_url as window_link %}
+
+          <div class="window card">
+            <div class="price-tag">
+              <span class="price">{{ window.price|intcomma }}</span>
+            </div>
+
+            <div class="window-img">
+              <a class="link-wrapper" href="{{ window_link }}">
+                <img src="{% static 'catalog/img/window-types/realistic/' %}{{ window.type }}.svg" alt="">
+              </a>
+            </div>
+
+            <div class="card-body">
+              <a class="card-title-link" href="{{ window_link }}">
+                <h6 class="card-title">{{ window.get_type_display }}</h6>
+              </a>
+              <ul class="feature-list">
+                <li class="feature">
+                  <span class="feature-name">Ширина:</span>
+                  <span class="feature-value">{{ window.width }} мм</span>
+                </li>
+                <li class="feature">
+                  <span class="feature-name">Высота:</span>
+                  <span class="feature-value">{{ window.height }} мм</span>
+                </li>
+                <li class="feature">
+                  <span class="feature-name">Цвет:</span>
+                  <span class="feature-value">{{ window.get_color_display }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card-footer">
+              <div class="seller">
+                <span class="label">Продавец:</span>
+                <span class="company-name">{{ window.seller.public_name }}</span>
+              </div>
+              <button class="seller-info-trigger contacts-btn" data-toggle="modal" data-seller-pk="{{ window.seller.pk }}">
+                Показать контакты
+              </button>
+            </div>
+          </div>{# END .window #}
+
+          {% endwith %}
+        {% endfor %}
+        </div>{# END .windows #}
+      </div>{# END .window-catalog #}
+
+    {% include 'partials/pagination.html' %}
+    </section>{# END .col-windows #}
+
+  </div>{# END .row #}
+</main>
+{% endblock content %}

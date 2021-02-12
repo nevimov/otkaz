@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% comment %}
+XXX (11 Feb 2021, nevimov): This template should be changed (remove
+user.is_seller checks) or deleted once an actual seller admin interface is
+implemented.
+{% endcomment %}
+{% load admin_urls static %}
+
+{% block title %}{{ title }} | {{ site_title }}{% endblock %}
+
+{% block extrahead %}
+{% if user.is_seller %}
+    <link rel="stylesheet" href="{% static 'css/seller-admin.css' %}">
+{% endif %}
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}
+{% if user.is_seller %}
+  {% include 'admin/sellers/global_nav.html' %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block html_classes %} main_page {% endblock %}
+
+{% block content %}
+<main class="banner">
+  <div class="container">
+
+    <section class="basic-window-search">
+      <h1 class="search-heading">Введите размер оконного проема</h1>
+      <form method="GET" action="{% url 'catalog:window-list' %}">
+        <div class="dimensions">
+          <div class="dimension width form-group">
+            <label for="width">Ширина, <span class="length-units">мм</span></label>
+            <input id="width" class="form-control" name="aperture_width"
+                   placeholder="1400" type="number" min="200" max="5000" required>
+          </div>
+
+          <i class="material-icons x-sign">close</i>
+
+          <div class="dimension height form-group">
+            <label for="height">Высота, <span class="length-units">мм</span></label>
+            <input id="height" class="form-control" name="aperture_height"
+                   placeholder="1400" type="number" min="200" max="5000" required>
+          </div>
+        </div>
+        <button type="submit">
+          <i class="material-icons">search</i> <span class="btn-text">Найти окна</span>
+        </button>
+      </form>
+    </section>
+
+  </div>{# END .container #}
+</main>
+{% endblock content %}

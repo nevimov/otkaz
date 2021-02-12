@@ -1,0 +1,4 @@
+<div class="custom-control custom-checkbox">
+  {% include 'widgets/bootstrap/input.html' with class='custom-control-input' %}
+  <label class="custom-control-label" {% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %}>{{ widget.label }}</label>
+</div>

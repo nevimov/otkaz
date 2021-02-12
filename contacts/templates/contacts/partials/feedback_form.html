@@ -1,0 +1,46 @@
+{% with id=id|default:"feedback-form"  form=form|default:contacts.feedback_form %}
+<form action="{% url 'contacts:request-feedback' %}" method="post"
+      id="{{ id }}" class="ajax-form feedback-form">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <label for="{{ id }}__name"> Ваше имя </label>
+    <input id="{{ id }}__name" class="form-control" name="name" type="text" maxlength="{{ form.name.field.max_length }}">
+  </div>
+
+  <div class="form-group required">
+    <label for="{{ id }}__email"> Электронная почта </label>
+    <input id="{{ id }}__email" class="email-input form-control" name="email" type="text"
+           required maxlength="{{ form.email.field.max_length }}">
+  </div>
+
+  <div class="form-group required">
+    <label for="{{ id }}__msg_type"> Тип сообщения </label>
+    <select id="{{ id }}__msg_type" class="custom-select" name="msg_type" required>
+      <option value=""> ---- </option>
+      {% for msg_type in form.instance.MsgTypes %}
+      <option value="{{ msg_type.value }}">{{ msg_type.label }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-group required">
+    <label for="{{ id }}__msg"> Сообщение </label>
+    <textarea id="{{ id }}__msg" class="form-control" name="msg" type="text"
+              maxlength="{{ form.msg.field.max_length }}"></textarea>
+  </div>
+
+  {% include "contacts/partials/pii_checkbox.html" %}
+
+  <button class="submit-btn" type="submit">
+    Отправить <i class="material-icons">send</i>
+  </button>
+
+  <div class="success-title d-none"> Успех! </div>
+  <div class="success-body  d-none">
+    Ваше сообщение было успешно отправлено.
+    <br>
+    Мы постараемся ответить Вам в ближайшее время.
+  </div>
+</form>
+{% endwith %}

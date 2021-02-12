@@ -1,0 +1,21 @@
+{% spaceless %}
+<div class="input-groups">
+{% with input_template='widgets/bootstrap/input.html' %}
+
+  <div class="input-group min">
+    <div class="input-group-prepend">
+      <span class="input-group-text">от</span>
+    </div>
+    {% include input_template with widget=widget.subwidgets.0 %}
+  </div>
+
+  <div class="input-group max">
+    <div class="input-group-prepend">
+      <span class="input-group-text">до</span>
+    </div>
+    {% include input_template with widget=widget.subwidgets.1 %}
+  </div>
+
+{% endwith %}
+</div>{# END .input-groups #}
+{% endspaceless %}

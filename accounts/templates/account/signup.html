@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block html_classes %} accounts accounts--signup {% endblock %}
+
+{% block content %}
+<main class="container">
+  {% include "partials/messages.html" %}
+  <div class="row">
+
+    <section class="conditions-section">
+      <h1 class="page-heading">Условия размещения</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nesciunt
+        ipsam iusto blanditiis odio quia voluptates asperiores aperiam ad
+        cumque, omnis recusandae delectus sed voluptate id veritatis cupiditate
+        modi ducimus.
+      </p>
+
+      <p>
+        Quisquam aliquid neque nostrum cupiditate, est repudiandae provident
+        reprehenderit id quae nemo distinctio adipisci, quis nesciunt placeat
+        tenetur temporibus numquam accusamus. Soluta minima voluptas dicta odio
+        molestiae qui perspiciatis maxime sint nostrum ex, perferendis odit vel
+        nulla eligendi tenetur omnis earum ducimus debitis voluptas amet.
+        Laudantium doloremque perferendis vel nostrum quidem temporibus, eius
+        libero debitis quis impedit beatae repellat blanditiis ipsam. Veritatis
+        numquam repudiandae facilis, exercitationem delectus nemo fuga ut minima
+        ipsa odio ea amet dicta.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum,
+        voluptas? Soluta amet expedita illo quam cum eligendi sequi voluptatum
+        ipsam aspernatur iure? Autem, quaerat. Velit, odit? Dolore sequi quasi
+        eaque!
+      </p>
+
+      <p>
+        Beatae dignissimos odio totam officiis quae illum quod temporibus, quos
+        doloribus et a quis aspernatur consequatur excepturi illum, illum
+        officiis numquam aperiam soluta voluptatem laborum ipsum minima eaque,
+        velit quo saepe nostrum quisquam possimus debitis at, eaque quam facere?
+        Vero et odio porro, ipsum nulla fuga quis excepturi? Quia qui voluptate
+        blanditiis veritatis mollitia cum, atque unde molestiae nesciunt nisi
+        omnis dicta, fugit molestias neque laudantium animi excepturi pariatur
+        nisi dolor amet, voluptates aspernatur numquam ratione dignissimos velit
+        itaque amet.
+      </p>
+
+      <p>
+        Sunt nihil laboriosam aliquam quasi aliquid ut accusantium dolorum ab
+        in, cupiditate earum quis esse natus perferendis. Mollitia ipsa beatae
+        cupiditate rem doloremque ducimus totam quaerat reprehenderit et
+        asperiores.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non nostrum
+        dolor sit, inventore vel quas repellat fugit quisquam consequuntur.
+        Officiis eaque explicabo voluptatem culpa facere soluta quae quos
+        itaque dicta.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur
+        laudantium quae eius maxime dolor dignissimos modi incidunt
+        repudiandae optio id? Unde, illo. Ullam assumenda, debitis iste odit
+        maiores mollitia veritatis.
+      </p>
+    </section>
+
+    <section class="signup-section">
+      <div class="signup-wrapper">
+        <h1 class="form-heading">Регистрация компании</h1>
+        <p class="pre-form-text">
+          Уже зарегистрированы? <a href="{{ login_url }}">Войдите</a>.
+        </p>
+        {% include "account/partials/signup_form.html" with id="seller-signup-form" %}
+      </div>
+    </section>
+
+  </div>{# END .row #}
+</main>
+{% endblock content %}

@@ -1,0 +1,46 @@
+# The translations below are missing because of this commit:
+# https://github.com/django/django/commit/42b9a23267f14be39b9b00958e18d5746783208e
+# The commit changes the single and double quote symbols, and thus breaks all
+# translations that include those symbols. The damage is not limited to the RU
+# locale.
+
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "The two password fields didn’t match."
+msgstr "Два поля с паролями не совпадают."
+
+msgid ""
+"Raw passwords are not stored, so there is no way to see this user’s "
+"password, but you can change the password using <a href=\"{}\">this form</a>."
+msgstr ""
+"Пароли не хранятся в открытом виде, поэтому нет возможности увидеть пароль "
+"этого пользователя, но вы можете изменить пароль, воспользовавшись <a href="
+"\"{}\">этой формой</a>."
+
+msgid "Your password can’t be too similar to your other personal information."
+msgstr ""
+"Ваш пароль не должен совпадать с вашим именем или другой персональной "
+"информацией или быть слишком похожим на неё."
+
+msgid "Your password can’t be a commonly used password."
+msgstr "Ваш пароль не может быть одним из широко распространённых паролей."
+
+msgid "Your password can’t be entirely numeric."
+msgstr "Ваш пароль не может состоять только из цифр."
+
+
+msgid ""
+"First, enter a username and password. Then, you’ll be able to edit more user "
+"options."
+msgstr ""
+"Сначала введите имя пользователя и пароль. Затем вы сможете ввести больше "
+"информации о пользователе."

@@ -1,0 +1,28 @@
+@use "bootstrap" as B;
+@use "material-colors" as C;
+
+
+.pii-agreement {
+
+    .page-heading {
+
+        @include B.media-breakpoint-only(xs) {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+    }
+
+    .agreement-wrapper {
+        background-color: C.$blue-50;
+        border: 1px solid C.$blue-100;
+        margin: 1rem 0;
+        padding: .5rem .75rem .75rem;
+
+        @include B.media-breakpoint-up(md) {
+            border-radius: .5rem;
+            margin:  1.5rem 1rem;
+            padding-left:  2.5rem;
+            padding-right: 2.5rem;
+        }
+    }
+}

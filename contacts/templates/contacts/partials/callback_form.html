@@ -1,0 +1,29 @@
+{% with id=id|default:"callback-form"  form=form|default:contacts.callback_form %}
+<form action="{% url 'contacts:request-callback' %}" method="post"
+      id="{{ id }}" class="ajax-form callback-form">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <label for="{{ id }}__name"> Ваше имя </label>
+    <input id="{{ id }}__name" class="form-control" name="name" type="text" maxlength="{{ form.name.field.max_length }}">
+  </div>
+
+  <div class="form-group required">
+    <label for="{{ id }}__phone"> Телефон </label>
+    <input id="{{ id }}__phone" class="form-control" name="phone" type="tel" required>
+  </div>
+
+  <div class="form-group">
+    <label for="{{ id }}__comment"> Комментарий </label>
+    <textarea id="{{ id }}__comment" class="form-control" name="comment" type="text"
+              maxlength="{{ form.comment.field.max_length }}"></textarea>
+  </div>
+
+  {% include "contacts/partials/pii_checkbox.html" %}
+
+  <button class="submit-btn" type="submit">
+    Отправить <i class="material-icons">send</i>
+  </button>
+
+</form>
+{% endwith %}

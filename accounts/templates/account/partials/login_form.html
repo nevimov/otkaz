@@ -1,0 +1,37 @@
+{% load i18n %}
+
+{% with id=id|default:"default-login-form" %}
+<form id="{{ id }}" class="login-form" method="post" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <div class="form-group">
+    <label for="{{ id }}__login">{% trans "Username" %}</label>
+    <input id="{{ id }}__login" class="form-control" name="login" type="text" autocomplete="username"
+           maxlength="{{ form.login.field.max_length }}" required>
+  </div>
+  {{ form.login.errors }}
+
+  <div class="form-group">
+    <label for="{{ id }}__password">{% trans "Password" %}</label>
+    <input id="{{ id }}__password" class="form-control" name="password" type="password" autocomplete="current-password" required>
+  </div>
+  {{ form.password.errors }}
+
+  <div class="form-check">
+    <input id="{{ id }}__remember_me" class="form-check-input" type="checkbox" name="remember">
+    <label for="{{ id }}__remember_me" class="form-check-label">{% trans "Remember Me" %}</label>
+  </div>
+
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+  {% endif %}
+
+  <div class="footer">
+    <button class="submit-btn" type="submit">
+      {% trans "Sign In" %} <i class="material-icons">login</i>
+    </button>
+    <a class="forgot-password-link" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  </div>
+</form>
+{% endwith %}

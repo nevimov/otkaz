@@ -1,0 +1,50 @@
+# REF: https://docs.docker.com/compose/compose-file/
+
+version: '3'
+volumes:
+  node_modules:
+  postgres_data:
+
+services:
+  web:
+    user: node
+    build:
+      context: .
+    env_file:
+      - .env
+    environment:
+      # Variables specified under 'environment' can be overridden by shell.
+      # For example, django-debug-toolbar can be disabled without editing any
+      # files with the following command:
+      # $ DEBUG_TOOLBAR=no docker-compose up -d
+      DEBUG_TOOLBAR: $DEBUG_TOOLBAR
+      TZ: $TZ
+    volumes:
+      - .:$PROJECT_ROOT_DIR
+      - node_modules:$PROJECT_ROOT_DIR/node_modules
+    ports:
+    # - "HOST_PORT:CONTAINER_PORT"
+      - "80:8000"
+      - "8001:8001"
+      - "8002:8002"
+    depends_on:
+      - postgres
+    restart: "no"
+    logging:
+      options:
+        max-size: "200k"
+        max-file: "5"
+
+  postgres:
+    image: postgres:10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    logging:
+      options:
+        max-size: "200k"
+        max-file: "5"
+    env_file:
+      - .env
+    environment:
+      TZ: $TZ
+    restart: "no"

@@ -1,0 +1,123 @@
+@use "bootstrap" as B;
+@use "material-colors" as C;
+@use "base";
+
+
+.accounts {
+
+    .form-heading {
+        @extend .page-heading;
+        padding-top: .75rem;
+    }
+
+    .pre-form-text {
+        color: B.$gray-700;
+        text-align: center;
+    }
+}
+
+
+// * ACCOUNT LOGIN
+//
+
+.accounts--login {
+
+    .login-wrapper {
+        background-color: B.$gray-200;
+        padding: 1.25rem 1.5rem 1.75rem;
+        margin: 1rem -1rem;
+
+        @include B.media-breakpoint-up(sm) {
+            margin-left:  auto;
+            margin-right: auto;
+            max-width: 30rem;
+        }
+    }
+
+    .login-form {
+
+        .footer {
+            display: flex;
+            flex-direction: row wrap;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-password-link {
+            margin-left: 1rem;
+        }
+    }
+}
+
+
+// * ACCOUNT SIGNUP
+//
+
+.accounts--signup {
+
+    .conditions-section {
+        @include B.make-col-ready();
+
+        @include B.media-breakpoint-up(lg) {
+            @include B.make-col(8);
+        }
+    }
+
+    .signup-section {
+        @include B.make-col-ready();
+
+        @include B.media-breakpoint-up(lg) {
+            @include B.make-col(4);
+        }
+
+        .form-heading {
+
+            @include B.media-breakpoint-up(md) {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    .signup-wrapper {
+        background-color: B.$gray-200;
+        padding: 1.25rem 1.5rem 1.75rem;
+        margin: 1.5rem -1rem;
+
+        @include B.media-breakpoint-up(sm) {
+            margin-left:  auto;
+            margin-right: auto;
+            max-width: 30rem;
+        }
+    }
+}
+
+
+// * VERIFICATION SENT NOTICE
+//
+
+.accounts--verif-sent {
+    $alert-width: 45rem;
+
+    .messages {
+        margin: auto;
+        max-width: $alert-width;
+    }
+
+    .verif-sent-alert {
+        @extend .alert;
+        @extend .alert-info;
+
+        font-size: 1.1rem;
+        margin: 1rem auto;
+        max-width: $alert-width;
+        padding-bottom: 1rem;
+        padding-top:    1rem;
+        text-align: center;
+
+        .alert-heading {
+            font-weight: 300;
+            padding-top:    .5rem;
+            padding-bottom: .4rem;
+        }
+    }
+}

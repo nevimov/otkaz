@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block html_classes %} accounts accounts--verif-sent {% endblock %}
+
+{% block title %}Подтвердите ваш e-mail{% endblock %}
+
+{% block content %}
+<main class="container">
+  {% include "partials/messages.html" %}
+
+  <div class="verif-sent-alert alert">
+    <h1 class="alert-heading">Подтвердите ваш e-mail</h1>
+    <p>
+      Мы отправили вам e-mail с подтверждением. Для завершения процесса
+      регистрации перейдите по указанной ссылке. Если вы не получили наше
+      сообщение в течение нескольких минут, пожалуйста, свяжитесь с нами.
+    </p>
+  </div>
+
+</main>
+{% endblock %}

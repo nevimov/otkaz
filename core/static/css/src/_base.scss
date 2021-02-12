@@ -1,0 +1,421 @@
+@use "bootstrap" as B;
+@use "material-colors" as C;
+
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &.sidemenu-open {
+        overflow: hidden;
+    }
+}
+
+
+.messages {
+    padding-left: 1rem;
+}
+
+
+.errorlist {
+    padding-left: 1.1rem;
+
+    &.nonfield {
+        @extend .alert;
+        @extend .alert-danger;
+        padding-left: 2.25rem;
+    }
+
+    li {
+        color: B.$red;
+    }
+}
+
+
+.form-group.required {
+
+    label {
+
+        &::before {
+            content: "*";
+            color: B.$red;
+            font-weight: 500;
+            padding-top:  .1rem;
+            padding-right: .15rem;
+        }
+    }
+}
+
+
+.page-heading {
+    color: B.$gray-800;
+    font-size: 1.75rem;
+    font-weight: 400;
+    text-align: center;
+
+    margin: 0;
+    padding: 1.25rem 1rem 1.45rem;
+
+    @include B.media-breakpoint-up(md) {
+        font-size: 2.4rem;
+    }
+}
+
+
+.page-overlay {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    width: 100%;
+    height: 100%;
+    z-index: B.$zindex-modal-backdrop;
+}
+
+
+.pagination {
+    justify-content: center;
+
+    .page-item.with-icon {
+
+        .page-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 0;
+            height:  2.375rem;
+            min-width: 2.1875rem;
+        }
+
+        .chevron-icon {
+            top: -1px;
+        }
+
+    } // END .page-item.with-icon
+}
+
+
+.close-btn {
+    @extend .btn;
+    @extend .btn-secondary;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 46px;
+    width:  46px;
+
+    position: absolute;
+    top:   0;
+    right: 0;
+
+    border-radius: 0 0 0 2px;
+    cursor: pointer;
+    opacity: .6;
+
+    i {
+        font-size: 1.75rem;
+    }
+
+    &:hover {
+        opacity: .5;
+    }
+}
+
+
+.submit-btn {
+    @extend .btn;
+    @extend .btn-lg;
+    @extend .btn-primary;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    font-size: .9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    .material-icons {
+        font-size: 1.25rem;
+        margin-left: .5rem;
+    }
+
+    // The spinner shown while an AJAX form is being sent.
+    .spinner-border {
+        @extend .spinner-border-sm;
+        margin-right: .55rem;
+    }
+}
+
+
+.pii-checkbox {
+    margin-bottom: .8rem;
+
+    label {
+        @extend .text-muted;
+    }
+}
+
+
+.alert-modal {
+
+    .modal-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-content {
+        @extend .alert;
+    }
+
+    &.failure {
+
+        .modal-content {
+            @extend .alert-danger;
+        }
+    }
+
+    &.success {
+
+        .modal-content {
+            @extend .alert-success;
+        }
+    }
+}
+
+
+// * MATERIAL ICONS
+//
+
+
+.material-icons {
+    position: relative;
+}
+
+
+.dropdown-item,
+.dropdown-toggle,
+.nav-link {
+    // Align nav links and button text with Material icons
+    display: flex;
+    align-items: center;
+}
+
+
+// * NAVBAR HEADER
+//
+
+#site-navbar {
+    @extend .navbar-light;
+    @extend .navbar-expand-lg;
+
+    background-color: #f2f2f0;
+
+    > .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    // ** SITE LOGO
+    //
+
+    .site-logo {
+        display: flex;
+        align-items: center;
+
+        img {
+            height: 2rem;
+            margin-right: .5rem;
+        }
+
+    }
+
+    .navbar-brand {
+        color: C.$blue-gray-800;
+        font-size: 1.2rem;
+    }
+
+    .domain-zone {
+        color: C.$blue-gray-500;
+    }
+
+
+    // ** NAVBAR MENU
+    //
+
+    .navbar-toggler {
+        margin-top: .5rem;
+    }
+
+    .navbar-collapse {
+
+        @include B.media-breakpoint-up(lg) {
+            flex-grow: 0;
+        }
+    }
+
+    .dropdown-item,
+    .dropdown-toggle,
+    .nav-link {
+
+        .material-icons {
+            margin-right: .35rem;
+        }
+    }
+
+    .dropdown-toggle::after {
+        margin-left: .4rem;
+    }
+
+    .nav-item.about-us,
+    .nav-item.feedback {
+
+        @include B.media-breakpoint-up(lg) {
+            display: none; // The links are displayed in the footer on desktop
+        }
+    }
+
+
+    // ** SITE MISSION AND CITY SELECTION
+    //
+    // On mobile devices, the "Site Mission" text and "City Selection" dropdown
+    // should be placed on a separate row, below the logo and menu button.
+    //
+
+    .mission-and-city-container {
+        display: flex;
+        align-items: center;
+        justify-content: stretch;
+        width: 100%;
+    }
+
+    // *** SITE MISSION
+    //
+
+    .mission {
+        color: rgba(0, 0, 0, .375);
+        font-size: .8rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        @include B.media-breakpoint-down(md) {
+            margin-bottom: .125rem;
+            margin-right: 1rem;
+            text-align: center;
+        }
+
+        br {
+            @media (min-width: 400px){
+                display: none;
+            }
+        }
+    } // END .mission
+
+
+    // *** CITY SELECTION
+    //
+
+    .city-selection {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+
+        @include B.media-breakpoint-down(md) {
+            margin-top:    .5rem;
+            margin-bottom: .5rem;
+        }
+
+        .dropdown-toggle {
+            @extend .nav-link;
+            padding: 0;
+
+            &::after {
+                color: B.$gray-600;
+            }
+        }
+
+        .selected-city {
+            border-bottom: 1px dashed B.$blue;
+        }
+
+        .material-icons {
+            color: B.$gray-600;
+
+            @media (max-width: 360px){
+                display: none;
+            }
+        }
+    } // END .city-selection
+
+} // END #site-navbar
+
+
+// * SITE FOOTER
+//
+
+#site-footer {
+    background: C.$blue-gray-900;
+
+    > .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top:    .125rem;
+        padding-bottom: .125rem;
+    }
+
+
+    // ** FOOTER MENU
+    //
+
+    .nav-link {
+        color: C.$blue-gray-100;
+
+        &:hover {
+            color: C.$blue-gray-50;
+        }
+    }
+
+    .nav-item.about-us {
+
+        .material-icons {
+            right: .3rem;
+        }
+    }
+
+    .nav-item.feedback {
+
+        .material-icons {
+            top: .1rem;
+            right: .4rem;
+        }
+    }
+
+    .nav-item.about-us,
+    .nav-item.feedback {
+
+        @include B.media-breakpoint-down(md) {
+            display: none; // The links are displayed in the navbar on mobile
+        }
+    }
+
+
+    // ** COPYRIGHT
+    //
+
+    .copyright {
+        color: C.$blue-gray-300;
+        font-size: .9rem;
+        margin-top:    .25rem;
+        margin-bottom: .25rem;
+    }
+
+} // END #site-footer

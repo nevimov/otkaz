@@ -1,0 +1,613 @@
+@use "sass:color";
+@use "bootstrap" as B;
+@use "material-colors" as C;
+
+
+// * SHARED STYLES
+//
+
+%price-tag {
+
+    .price {
+        color: white;
+        background: C.$green-700;
+        position: relative;
+        border-radius: .1rem;
+        font-size: 1.2rem;
+        font-weight: 400;
+        padding: .25rem .5rem .3rem .7rem;
+
+        &::after {
+            content: '\20BD'; // The ruble sign
+            font-size: 1.1rem;
+            font-weight: normal;
+            margin-left: .35rem;
+        }
+    }
+}
+
+
+.window-img {
+    margin-left:  auto;
+    margin-right: auto;
+
+    .link-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width:  100%;
+        height: 100%;
+    }
+
+    img {
+        max-height: 100%;
+        width: 100%;
+    }
+}
+
+
+.feature-list {
+    @extend .list-group;
+    @extend .list-group-flush;
+
+    .feature {
+        @extend .list-group-item;
+
+        display: flex;
+        align-items: center;
+        padding: .75rem .5rem;
+    }
+
+    .feature-name {
+        color: B.$gray-800;
+        font-size: .875rem;
+        margin-right: .25rem;
+        text-transform: uppercase;
+        width: 6.5rem;
+    }
+
+    .feature-value {
+        color: black;
+    }
+}
+
+
+.seller-biz-card {
+    display: flex;
+    flex-flow: row wrap;
+
+    .biz-card-heading{
+        margin-bottom: 1rem;
+    }
+
+    .seller-info-table {
+        @extend .table;
+        @extend .table-bordered;
+        @extend .table-striped;
+    }
+
+    .place-list-heading {
+        padding-top: .25rem;
+    }
+
+    .place-list {
+        padding-left: 1.15rem;
+    }
+
+    .place {
+        padding-top: .5rem;
+    }
+
+    .place-type {
+        font-style: italic;
+        font-weight: 500;
+    }
+
+    .place-address {
+        color: B.$gray-800;
+        font-style: italic;
+    }
+} // END .seller-biz-card
+
+
+// * WINDOW_LIST.HTML STYLES
+//
+
+// ** LAYOUT
+//
+
+.catalog-container {
+    @include B.make-container();
+
+    max-width: 1274px;
+}
+
+.catalog--window-list {
+
+    .col-filter {
+        @include B.make-col-ready();
+
+        @include B.media-breakpoint-up(lg) {
+            @include B.make-col(3);
+        }
+    }
+
+    .col-windows {
+        @include B.make-col-ready();
+
+        @include B.media-breakpoint-up(lg) {
+            @include B.make-col(9);
+        }
+    }
+}
+
+
+// ** SECTION "FILTER"
+//
+
+.window-filter {
+    width: 18rem;
+    margin: .8rem auto 1rem;
+
+    @include B.media-breakpoint-up(lg) {
+        position: sticky;
+        top: .5rem;
+    }
+}
+
+.window-filter-heading {
+    color: B.$gray-600;
+    font-size: 1.75rem;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: .85rem;
+}
+
+.windows-filter-form {
+    $form-padding-x: 1rem;
+    $form-padding-bottom: 1.25rem;
+
+    background: B.$gray-100;
+    border: 1px solid color.adjust(B.$gray-100, $lightness: -2.5%);
+    border-radius: 3px;
+    padding: .7rem $form-padding-x $form-padding-bottom;
+
+    .form-group > label {
+        color: B.$gray-900;
+        font-size: .9rem;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+    .custom-control-label {
+        color: B.$gray-800;
+    }
+
+    .input-groups {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    .input-group.min {
+        margin-right: 1rem;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: $form-padding-bottom;
+        margin-left:  -$form-padding-x;
+        margin-right: -$form-padding-x;
+    }
+
+    .apply-filters-btn {
+        @extend .btn;
+        @extend .btn-primary;
+    }
+
+    .reset-filters-btn {
+        @extend .btn;
+        @extend .btn-outline-danger;
+    }
+
+} // END .windows-filter-form
+
+
+// *** RESPONSIVE SIDEBAR MENU
+//
+
+// NOTE: The menu rules specificity must be higher than that of .col-filter.
+.catalog--window-list .side-menu {
+
+    @include B.media-breakpoint-down(md) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: B.$zindex-modal;
+
+        $width: 20rem;
+        width: $width;
+        margin-left: -$width;
+
+        background: B.$gray-100;
+        overflow-y: auto;
+
+        &.active {
+            margin-left: 0;
+        }
+    }
+
+    .close-btn {
+
+        @include B.media-breakpoint-up(lg) {
+            display: none;
+        }
+    }
+
+}
+
+.sidemenu-trigger {
+    @extend .btn;
+    @extend .btn-dark ;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    width:  50px;
+    height: 50px;
+    z-index: B.$zindex-fixed;
+
+    @include B.media-breakpoint-up(lg) {
+        display: none;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: black;
+    }
+}
+
+#window-filtermenu-trigger {
+    top: 45%;
+    right:  5px;
+    opacity: .5;
+    border-radius: 3px;
+}
+
+
+// ** SECTION "WINDOWS"
+//
+
+.no-matches-msg {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .msg {
+        @extend .alert;
+        @extend .alert-info;
+
+        font-size: 1.1rem;
+        margin: 1rem;
+
+        @include B.media-breakpoint-only(xs) {
+            background: none;
+            border: none;
+            margin-left:  0;
+            margin-right: 0;
+        }
+    }
+}
+
+.windows {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    @include B.media-breakpoint-up(lg) {
+        margin-left: 1rem;
+    }
+}
+
+.window {
+    width: 17.175rem;
+    margin: 0 .75rem 1.75rem .75rem;
+
+
+    // *** PRICE TAG GLUED TO THE WINDOW IMAGE
+    //
+
+    .price-tag {
+        @extend %price-tag;
+
+        .price {
+            position: absolute;
+            padding: .15rem .375rem .15rem .5rem;
+
+            border-radius: 0 0 .25rem 0;
+            font-size: 1.05rem;
+            font-weight: 500;
+
+            &::after {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    // *** CARD IMAGE
+    //
+
+    .window-img {
+        height: 12rem;
+        width:  15rem;
+        padding: 1.35rem 1rem 0 1rem;
+        margin-top: 1rem;
+        margin-bottom: .5rem;
+    }
+
+    // *** CARD BODY
+    //
+
+    .card-body {
+        padding: 0 .75rem;
+    }
+
+    .card-title-link {
+        color: B.$gray-900;
+
+        &:hover {
+            color: B.$gray-700;
+            text-decoration: none;
+        }
+    }
+
+    .card-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 3.975rem;
+        padding: 0;
+        margin-bottom: .35rem;
+
+        font-size: 1.125rem;
+        text-align: center;
+    }
+
+    .feature-list {
+        border-top: B.$list-group-border-width solid B.$list-group-border-color;
+    }
+
+
+    // *** CARD FOOTER
+    //
+
+    .card-footer {
+        display: flex;
+        flex-direction: column;
+        padding: .5rem 1rem 1.15rem;
+    }
+
+    .seller {
+        text-align: center;
+
+        .label {
+            font-size: .875rem;
+            text-transform: uppercase;
+            margin-right: .5rem;
+        }
+
+        .company-name {
+            color: B.$gray-600;
+        }
+    }
+
+    .contacts-btn {
+        @extend .btn;
+        @extend .btn-outline-info;
+
+        font-size: .875rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-top:    .475rem;
+        margin-left:  .25rem;
+        margin-right: .25rem;
+    }
+
+} // END .window
+
+
+// *** PAGINATION
+//
+
+.catalog--window-list .pagination {
+    margin-bottom: 1.75rem;
+
+    @include B.media-breakpoint-down(md) {
+        flex-wrap: wrap;
+
+        .next,
+        .previous {
+            display: none;
+        }
+    }
+}
+
+
+// *** "SELLER INFO" MODAL
+//
+
+#seller-info-modal {
+
+    .modal-header,
+    .modal-body {
+
+        @include B.media-breakpoint-up(md) {
+            padding-left:  1.75rem;
+            padding-right: 1.75rem;
+        }
+    }
+
+    .modal-header {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+}
+
+
+// * WINDOW_DETAIL.HTML STYLES
+//
+
+.catalog--window-detail {
+
+    .page-heading {
+        padding-bottom: 2.5rem;
+    }
+
+
+    // ** LAYOUT
+    //
+
+    .col-window {
+        @include B.make-col-ready();
+
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        width: 100%;
+
+        @include B.media-breakpoint-up(lg) {
+            @include B.make-col(6);
+        }
+    }
+
+    .col-seller {
+        @include B.make-col-ready();
+
+        @include B.media-breakpoint-up(lg) {
+            @include B.make-col(6);
+        }
+    }
+
+
+    // ** SECTION "WINDOW INFO"
+    //
+
+    // *** SUBSECTION "WINDOW IMAGE"
+    //
+
+    .window-img-section {
+        width: 100%;
+
+        @include B.media-breakpoint-only(md) {
+            width: 50%;
+        }
+    }
+
+    .window-img {
+        height: 18rem;
+        max-width: 18rem;
+
+        .link-wrapper {
+            // At the moment, the image link does nothing. To avoid confusion,
+            // we change the cursor from 'pointer' (default for links) to the
+            // platform default (usually an arrow).
+            cursor: default;
+        }
+    }
+
+
+    // *** SUBSECTION "WINDOW DESCRIPTION"
+    //
+
+    .window-desc-section {
+        width: 100%;
+
+        @include B.media-breakpoint-only(md) {
+            width: 50%;
+        }
+    }
+
+
+    .feature-list {
+        margin-top:   .25rem;
+        margin-right: .75rem;
+    }
+
+    .feature {
+        padding: .75rem 1rem;
+    }
+
+
+    .window-description {
+        color: B.$gray-700;
+        font-size: 1.1rem;
+        padding-top:    1.5rem;
+        padding-bottom: .4rem;
+    }
+
+
+    .price-tag {
+        @extend %price-tag;
+
+        display: flex;
+        justify-content: flex-end;
+        margin: 1rem 1rem 0;
+        padding-right: 1.5rem;
+        width: 100%;
+
+        .price {
+
+            &::after {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+
+    // ** SECTION "SELLER INFO"
+    //
+
+    .seller-biz-card {
+        $border: 1px solid #e9e9e9;
+
+        background-color: #f5f5ff;
+        border-top: $border;
+        padding: 1rem 1.25rem;
+
+        margin-bottom: 1rem;
+        // .seller-info-table requires a bit more horizontal space on very
+        // small screens.
+        margin-left:  -(B.$grid-gutter-width / 2);
+        margin-right: -(B.$grid-gutter-width / 2);
+
+        @include B.media-breakpoint-up(sm) {
+            border: $border;
+            margin-left:  0;
+            margin-right: 0;
+        }
+
+        .main-section {
+            width: 100%;
+
+            @include B.media-breakpoint-only(md) {
+                width: 50%;
+            }
+        }
+
+        .places-section {
+            width: 100%;
+
+            @include B.media-breakpoint-only(md) {
+                width: 50%;
+                padding-left: 1.5rem;
+            }
+        }
+    }
+
+} // END .catalog--window-detail

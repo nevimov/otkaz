@@ -1,0 +1,50 @@
+{% load i18n %}
+
+{% with id=id|default:"default-signup-form" %}
+<form id="{{ id }}" class="signup-form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <label for="{{ id }}__username">{% trans "Username" %}</label>
+    <input id="{{ id }}__username" class="form-control" name="username" type="text" autocomplete="username"
+           maxlength="{{ form.username.field.max_length }}" required>
+  </div>
+  {{ form.username.errors }}
+
+  <div class="form-group">
+    <label for="{{ id }}__public_name">Название компании</label>
+    <input id="{{ id }}__public_name" class="form-control" name="public_name" type="text" autocomplete="public_name"
+           maxlength="{{ form.public_name.field.max_length }}" required>
+  </div>
+  {{ form.public_name.errors }}
+
+  <div class="form-group">
+    <label for="{{ id }}__email">Электронная почта</label>
+    <input id="{{ id }}__email" class="form-control" type="email" name="email" autocomplete="email" required>
+  </div>
+  {{ form.email.errors }}
+
+  <div class="form-group">
+    <label for="{{ id }}__password1">Пароль</label>
+    <input id="{{ id }}__password1" class="form-control" type="password" name="password1" autocomplete="new-password" required>
+  </div>
+  {{ form.password1.errors }}
+
+  <div class="form-group">
+    <label for="{{ id }}__password2">Пароль (еще раз)</label>
+    <input id="{{ id }}__password2" class="form-control" type="password" name="password2" required>
+  </div>
+  {{ form.password2.errors }}
+
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+  {% endif %}
+
+  <div class="footer">
+    {% include "contacts/partials/pii_checkbox.html" %}
+    <button class="submit-btn" type="submit">
+      {% trans "Sign Up" %} <i class="material-icons">arrow_forward</i>
+    </button>
+  </div>
+</form>
+{% endwith %}

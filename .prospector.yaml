@@ -1,0 +1,20 @@
+strictness: medium
+doc-warnings: false
+test-warnings: false
+autodetect: true
+member-warnings: false
+
+
+pylint:
+  run: true
+  disable:
+    - too-many-locals
+
+pep8:
+  run: false
+
+pyflakes:
+  run: false
+
+dodgy:
+  run: false

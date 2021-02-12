@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block html_classes %} accounts accounts--login {% endblock %}
+
+{% block title %}Вход для компаний, продающих окна{% endblock %}
+
+{% block content %}
+<main class="container">
+  {% include "partials/messages.html" %}
+
+  <div class="login-wrapper">
+    <h1 class="form-heading">Вход в аккаунт компании</h1>
+    <p class="pre-form-text">
+      Если у вас еще нет аккаунта, то вам необходимо ознакомится с
+      <a href="{{ signup_url }}">условиями размещения и зарегистрироваться</a>.
+    </p>
+    {% include "account/partials/login_form.html" with id="seller-login-form" %}
+  </div>
+
+</main>
+{% endblock content %}
