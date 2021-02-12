@@ -112,6 +112,8 @@ LOGIN_REDIRECT_URL = 'sellers:profile'
 
 LOGIN_URL = '/accounts/login/'
 
+LOGOUT_REDIRECT_URL = 'account_login'
+
 
 # ****************************
 # *** Internationalization ***
