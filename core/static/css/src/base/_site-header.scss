@@ -1,0 +1,152 @@
+@use "../bootstrap" as B;
+@use "../material-colors" as C;
+
+
+// * NAVBAR HEADER
+//
+
+#site-navbar {
+    @extend .navbar-light;
+    @extend .navbar-expand-lg;
+
+    background-color: #f2f2f0;
+
+    > .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    // ** SITE LOGO
+    //
+
+    .site-logo {
+        display: flex;
+        align-items: center;
+
+        img {
+            height: 2rem;
+            margin-right: .5rem;
+        }
+
+    }
+
+    .navbar-brand {
+        color: C.$blue-gray-800;
+        font-size: 1.2rem;
+    }
+
+    .domain-zone {
+        color: C.$blue-gray-500;
+    }
+
+
+    // ** NAVBAR MENU
+    //
+
+    .navbar-toggler {
+        margin-top: .5rem;
+    }
+
+    .navbar-collapse {
+
+        @include B.media-breakpoint-up(lg) {
+            flex-grow: 0;
+        }
+    }
+
+    .dropdown-item,
+    .dropdown-toggle,
+    .nav-link {
+
+        .material-icons {
+            margin-right: .35rem;
+        }
+    }
+
+    .dropdown-toggle::after {
+        margin-left: .4rem;
+    }
+
+    .nav-item.about-us,
+    .nav-item.feedback {
+
+        @include B.media-breakpoint-up(lg) {
+            display: none; // The links are displayed in the footer on desktop
+        }
+    }
+
+
+    // ** SITE MISSION AND CITY SELECTION
+    //
+    // On mobile devices, the "Site Mission" text and "City Selection" dropdown
+    // should be placed on a separate row, below the logo and menu button.
+    //
+
+    .mission-and-city-container {
+        display: flex;
+        align-items: center;
+        justify-content: stretch;
+        width: 100%;
+    }
+
+    // *** SITE MISSION
+    //
+
+    .mission {
+        color: rgba(0, 0, 0, .375);
+        font-size: .8rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        @include B.media-breakpoint-down(md) {
+            margin-bottom: .125rem;
+            margin-right: 1rem;
+            text-align: center;
+        }
+
+        br {
+            @media (min-width: 400px){
+                display: none;
+            }
+        }
+    } // END .mission
+
+
+    // *** CITY SELECTION
+    //
+
+    .city-selection {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+
+        @include B.media-breakpoint-down(md) {
+            margin-top:    .5rem;
+            margin-bottom: .5rem;
+        }
+
+        .dropdown-toggle {
+            @extend .nav-link;
+            padding: 0;
+
+            &::after {
+                color: B.$gray-600;
+            }
+        }
+
+        .selected-city {
+            border-bottom: 1px dashed B.$blue;
+        }
+
+        .material-icons {
+            color: B.$gray-600;
+
+            @media (max-width: 360px){
+                display: none;
+            }
+        }
+    } // END .city-selection
+
+} // END #site-navbar

@@ -1,0 +1,210 @@
+@use "../bootstrap" as B;
+
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &.sidemenu-open {
+        overflow: hidden;
+    }
+}
+
+
+.page-overlay {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    width: 100%;
+    height: 100%;
+    z-index: B.$zindex-modal-backdrop;
+}
+
+
+.page-heading {
+    color: B.$gray-800;
+    font-size: 1.75rem;
+    font-weight: 400;
+    text-align: center;
+
+    margin: 0;
+    padding: 1.25rem 1rem 1.45rem;
+
+    @include B.media-breakpoint-up(md) {
+        font-size: 2.4rem;
+    }
+}
+
+
+.pagination {
+    justify-content: center;
+
+    .page-item.with-icon {
+
+        .page-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 0;
+            height:  2.375rem;
+            min-width: 2.1875rem;
+        }
+
+        .chevron-icon {
+            top: -1px;
+        }
+
+    } // END .page-item.with-icon
+}
+
+
+.messages {
+    padding-left: 1rem;
+}
+
+
+// * FORMS
+//
+
+.errorlist {
+    padding-left: 1.1rem;
+
+    &.nonfield {
+        @extend .alert;
+        @extend .alert-danger;
+        padding-left: 2.25rem;
+    }
+
+    li {
+        color: B.$red;
+    }
+}
+
+
+.form-group.required {
+
+    label {
+
+        &::before {
+            content: "*";
+            color: B.$red;
+            font-weight: 500;
+            padding-top:  .1rem;
+            padding-right: .15rem;
+        }
+    }
+}
+
+
+.close-btn {
+    @extend .btn;
+    @extend .btn-secondary;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 46px;
+    width:  46px;
+
+    position: absolute;
+    top:   0;
+    right: 0;
+
+    border-radius: 0 0 0 2px;
+    cursor: pointer;
+    opacity: .6;
+
+    i {
+        font-size: 1.75rem;
+    }
+
+    &:hover {
+        opacity: .5;
+    }
+}
+
+
+.submit-btn {
+    @extend .btn;
+    @extend .btn-lg;
+    @extend .btn-primary;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    font-size: .9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    .material-icons {
+        font-size: 1.25rem;
+        margin-left: .5rem;
+    }
+
+    // The spinner shown while an AJAX form is being sent.
+    .spinner-border {
+        @extend .spinner-border-sm;
+        margin-right: .55rem;
+    }
+}
+
+
+.pii-checkbox {
+    margin-bottom: .8rem;
+
+    label {
+        @extend .text-muted;
+    }
+}
+
+
+.alert-modal {
+
+    .modal-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-content {
+        @extend .alert;
+    }
+
+    &.failure {
+
+        .modal-content {
+            @extend .alert-danger;
+        }
+    }
+
+    &.success {
+
+        .modal-content {
+            @extend .alert-success;
+        }
+    }
+}
+
+
+// * MATERIAL ICONS
+//
+
+
+.material-icons {
+    position: relative;
+}
+
+
+.dropdown-item,
+.dropdown-toggle,
+.nav-link {
+    // Align nav links and button text with Material icons
+    display: flex;
+    align-items: center;
+}

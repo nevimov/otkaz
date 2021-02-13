@@ -1,6 +1,8 @@
 @use "bootstrap";
 
-@use "base";
+@use "base/base";
+@use "base/site-header";
+@use "base/site-footer";
 @use "window-search";
 @use "catalog";
 @use "accounts";

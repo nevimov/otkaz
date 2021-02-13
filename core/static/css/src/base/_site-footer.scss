@@ -1,0 +1,64 @@
+@use "../bootstrap" as B;
+@use "../material-colors" as C;
+
+// * SITE FOOTER
+//
+
+#site-footer {
+    background: C.$blue-gray-900;
+
+    > .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top:    .125rem;
+        padding-bottom: .125rem;
+    }
+
+
+    // ** FOOTER MENU
+    //
+
+    .nav-link {
+        color: C.$blue-gray-100;
+
+        &:hover {
+            color: C.$blue-gray-50;
+        }
+    }
+
+    .nav-item.about-us {
+
+        .material-icons {
+            right: .3rem;
+        }
+    }
+
+    .nav-item.feedback {
+
+        .material-icons {
+            top: .1rem;
+            right: .4rem;
+        }
+    }
+
+    .nav-item.about-us,
+    .nav-item.feedback {
+
+        @include B.media-breakpoint-down(md) {
+            display: none; // The links are displayed in the navbar on mobile
+        }
+    }
+
+
+    // ** COPYRIGHT
+    //
+
+    .copyright {
+        color: C.$blue-gray-300;
+        font-size: .9rem;
+        margin-top:    .25rem;
+        margin-bottom: .25rem;
+    }
+
+} // END #site-footer
