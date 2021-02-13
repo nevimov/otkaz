@@ -9,8 +9,6 @@ from django.utils.functional import cached_property
 
 from ckeditor.fields import RichTextField
 
-from cities.models import City
-
 __all__ = ['Window']
 
 
