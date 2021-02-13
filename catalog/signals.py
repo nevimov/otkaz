@@ -11,6 +11,8 @@ def clear_window_dimension_extremes(sender, **kwargs):
     When a window is saved or deleted, clear cached minimal and maximal
     window dimensions for the current city.
     """
+    # pylint: disable=unused-argument,pointless-statement,protected-access
+
     # Because of the way the descriptor protocol works, using del (or delattr)
     # on a cached_property that hasn’t been accessed raises AttributeError.
     Window.objects._dimension_extremes  # Avoids AttributeError in tests
