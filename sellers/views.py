@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import RedirectView, TemplateView
+from django.views.generic import RedirectView
 
 from sellers.admin import dummy_seller_admin_site
 from .models import Seller
