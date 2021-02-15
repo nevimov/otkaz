@@ -1,3 +1,12 @@
+// This module contains:
+//
+// * Styles of elements defined in_base.html;
+//
+// * Styles of elements that are NOT part of _base.html, but still used by more
+//   than one app, if they are not logically related to any app (for example,
+//   .pagination).
+//
+
 @use "../bootstrap" as B;
 
 

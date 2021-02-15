@@ -1,4 +1,8 @@
-// Bootstrap 4 styles.
+// This file contains Bootstrap variable overrides and imports of the
+// framework's modules.
+//
+// If a module is not required at the moment -- just comment out the
+// corresponding line, do not delete it!
 //
 // NOTE: To make the @imports below work, 'sass' has to be invoked with the
 //       '--load-path' option pointing to the project's root directory.
@@ -6,6 +10,7 @@
 
 $font-family-base: "Roboto", sans-serif;
 $font-weight-bold: 500;
+
 
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
