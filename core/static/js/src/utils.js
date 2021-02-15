@@ -32,8 +32,9 @@ export function humanizeNumber(num, sep) {
   let intPart = numParts[0]
   const fractPart = numParts.length > 1 ? '.' + numParts[1] : ''
 
+  const regex = /(\d+)(\d{3})/
   while (regex.test(intPart)) {
-    intPart = intPart.replace(/(\d+)(\d{3})/, '$1' + sep + '$2')
+    intPart = intPart.replace(regex, '$1' + sep + '$2')
   }
 
   return intPart + fractPart
