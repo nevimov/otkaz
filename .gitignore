@@ -21,6 +21,10 @@ node_modules/
 .devcontainer/
 .vscode/
 
+# Django
+locale/*/LC_MESSAGES/django.mo
+*/locale/*/LC_MESSAGES/django.mo
+
 
 #
 ## Project-specific
