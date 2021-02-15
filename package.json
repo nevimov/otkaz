@@ -19,7 +19,8 @@
     "css-minify": "make css-minify",
     "js": "make js",
     "js-compile": "make js-compile",
-    "js-watch": "make js-watch"
+    "js-watch": "make js-watch",
+    "js-lint": "make js-lint"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",

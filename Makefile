@@ -32,9 +32,10 @@ css:
 # *** JavaScript ***
 # ******************
 
-PHONY: js js-compile js-watch
+PHONY: js js-compile js-watch js-lint
 
 js:
+	make js-lint
 	make js-compile
 
 js-compile:
@@ -42,6 +43,9 @@ js-compile:
 
 js-watch:
 	npx rollup --config --watch
+
+js-lint:
+	npx eslint ./core/static/js/src
 
 
 # **************
