@@ -2,7 +2,7 @@ import { getCookie } from './utils'
 
 function csrfSafeMethod(method) {
   // these HTTP methods do not require CSRF protection
-  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method))
 }
 
 const csrftoken = getCookie('csrftoken')

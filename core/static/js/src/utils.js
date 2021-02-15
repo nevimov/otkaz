@@ -7,12 +7,12 @@ export function getCookie(name) {
       const cookie = cookies[i].trim()
       // Does this cookie string begin with the name we want?
       if (cookie.substring(0, name.length + 1) === (name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
-          break;
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+        break
       }
     }
   }
-  return cookieValue;
+  return cookieValue
 }
 
 
