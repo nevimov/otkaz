@@ -83,4 +83,4 @@ RUN npm install && npm cache clean --force --loglevel=error
 # Expose a port for Django development server
 EXPOSE 80 8001 8002
 
-CMD ["/usr/bin/make", "run"]
+CMD ["sleep", "infinity"]
