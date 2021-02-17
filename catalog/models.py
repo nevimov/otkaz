@@ -226,7 +226,7 @@ class Window(models.Model):
         ]
 
     def __str__(self):
-        return f'{self.pk} ({self.width}x{self.height})'
+        return f'#{self.pk} (w{self.width}_h{self.height})'
 
     def get_absolute_url(self):
         return reverse('catalog:window-detail', kwargs={'pk': self.pk})
