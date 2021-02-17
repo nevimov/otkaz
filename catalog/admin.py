@@ -3,20 +3,11 @@ from django.conf import settings
 from django.contrib import admin
 from django.utils.html import format_html
 
-from sellers.models import Seller
+from sellers.models import Seller, Place
 from .models import Window
 
 
-class WindowAdminForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Limit 'place' choices to places owned by the window seller
-        self.fields['place'].queryset = self.instance.seller.places.all()
-
-
 class BaseWindowAdmin(admin.ModelAdmin):
-    form = WindowAdminForm
     date_hierarchy = 'datetime_created'
     readonly_fields = [
         'datetime_created',
@@ -58,6 +49,13 @@ class BaseWindowAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.seller = Seller.objects.get(user=request.user)
         super().save_model(request, obj, form, change)
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        # Limit 'place' choices to places owned by the window seller
+        if db_field.name == 'place':
+            seller_places = Place.objects.filter(seller__user=request.user)
+            kwargs['queryset'] = seller_places
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
 @admin.register(Window)
