@@ -70,8 +70,8 @@ WORKDIR $PROJECT_ROOT_DIR
 
 # Install Pip packages
 COPY pip-common.txt pip-dev.txt ./
-RUN  pip3 install --no-cache-dir --upgrade pip \
-     && python3 -m pip install --no-cache-dir --requirement pip-dev.txt
+RUN  pip3 install --no-cache-dir --default-timeout=100 --upgrade pip \
+     && python3 -m pip install --no-cache-dir --default-timeout=100 --requirement pip-dev.txt
 
 
 # Install Node packages
