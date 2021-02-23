@@ -132,6 +132,7 @@
 
         .dropdown-toggle {
             @extend .nav-link;
+            display: flex;
             padding: 0;
 
             &::after {
