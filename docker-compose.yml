@@ -7,6 +7,7 @@ volumes:
 
 services:
   web:
+    container_name: otkaz_web
     user: node
     build:
       context: .
@@ -36,6 +37,7 @@ services:
         max-file: "5"
 
   postgres:
+    container_name: otkaz_postgres
     image: postgres:10
     volumes:
       - postgres_data:/var/lib/postgresql/data
